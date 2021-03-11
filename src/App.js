@@ -1,22 +1,22 @@
-import logo from './logo.svg';
+import React from "react"
 import './App.css';
+import TodoList from "./TodoList";
+import {useDispatch} from "react-redux"
 
 function App() {
+  const dispatch=useDispatch();
+  const add=(newTodo)=>{
+    dispatch({type:"ADD_TODO",payload:{text:newTodo.text,status:false}})
+  }
+  const del=(id)=>{
+    console.log(id)
+    dispatch({type:"DELETE_TODOS",payload:id})
+
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <TodoList add={add} del={del}/>
       </header>
     </div>
   );
